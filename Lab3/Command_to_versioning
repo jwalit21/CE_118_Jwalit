@@ -1,0 +1,26 @@
+Create mykey.snk for strongly named assembly
+
+	-sn -k mykey.snk
+
+Generate strongly named calc.dll from version 0.0.0.0 calc.cs
+
+	-csc /keyfile:mykey.snk /t:library calc.cs
+
+Add version 0.0.0.0 calc.dll to GACUtil global cache
+
+	-gacutil -i calc.dll
+
+Make driver.exe from driver.cs
+
+	-csc /t:exe /r:calc.dll driver.cs
+
+Generate strongly named calc.dll from version 1.0.0.0 calc_new.cs
+
+	-csc /keyfile:mykey.snk /t:library /out:calc.dll calc_new.cs
+
+Add version 1.0.0.0 calc.dll to GACUtil global cache
+
+	-gacutil -i calc.dll
+
+Now create driver.exe.config file for versioning control of dll
+And run driver.exe for running driver program according to new version of calc.dll
