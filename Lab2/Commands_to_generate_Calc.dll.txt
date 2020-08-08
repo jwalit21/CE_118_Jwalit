@@ -1,0 +1,8 @@
+converting addition.cs to the addition.netmodule
+	
+	-csc /t:module addition.cs   --->    addition.netmodule
+	-csc /t:module multiplication.cs   --->   multiplication.netmodule
+
+making one dll from two different .netmodule files
+
+	-csc /out:Calc.dll /addmodule:addition.netmodule /addmodule:multiplication.netmodule 
