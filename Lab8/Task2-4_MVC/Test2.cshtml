@@ -1,0 +1,31 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div>
+    <form asp-controller="Home" asp-action="Test2" method="post">
+        <div>
+            Enter number 1 :
+            <input type="text" id="num1" name="num1"/>
+        </div>
+        <br />
+        <div>
+            Enter number 2 :
+            <input type="text" id="num2" name="num2"/>
+        </div>
+        <br />
+        <div>
+            <input type="submit" />
+        </div>
+    </form>
+</div>
+<hr />
+
+<h3>This is Test2 method</h3>
+<div>
+    <p>First Selected number is @ViewBag.num1</p>
+    <p>Second Selected number is @ViewBag.num2</p>
+    <p>sum is @ViewBag.sum</p>
+</div>

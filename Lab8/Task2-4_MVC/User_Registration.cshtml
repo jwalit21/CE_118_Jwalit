@@ -1,0 +1,70 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form asp-controller="Home" asp-action="User_Registration" class="card">
+    <div class="card-header">
+        User Registration Form
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <span class="col-md-2 pl-5">First Name</span>
+            <input class="form-control col-md-3" type="text" name="fname" id="fname" />
+            <span class="col-md-2 pl-5">Last Name</span>
+            <input class="form-control col-md-3" type="text" name="lname" id="lname" />
+        </div>
+        <br />
+        <div class="row">
+            <span class="col-md-2 pl-5">Email</span>
+            <input class="form-control col-md-8" type="email" name="email" id="email" />
+        </div>
+        <br />
+        <div class="row">
+            <span class="col-md-2 pl-5">Password</span>
+            <input class="form-control col-md-3" type="password" name="password" id="password" />
+            <span class="col-md-2 pl-5">Re-enter Password </span>
+            <input class="form-control col-md-3" type="password" name="re_password" id="re_password" />
+        </div>
+        <br />
+        <div class="row">
+            <span class="col-md-2 pl-5">Contact No</span>
+            <input class="form-control col-md-3" type="tel" name="mobileno" id="mobileno" />
+        </div>
+        <br />
+        <div class="row">
+            <span class="col-md-2 pl-5">Gender</span>
+            <div class="md-col-8">
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="gender" value="male">Male
+                    </label>
+                </div>
+                <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="gender" value="female">Female
+                    </label>
+                </div>
+                <div class="form-check-inline disabled">
+                    <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="gender" value="other">Other
+                    </label>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <span class="col-md-2 pl-5">Date of Birth</span>
+            <input class="form-control col-md-3" type="date" name="dob" id="dob" />
+        </div>
+        <br />
+        <div class="row">
+            <span class="col-md-2 pl-5">Profile Photo</span>
+            <input class="col-md-3" type="file" name="profile_pic" id="profile_pic" />
+        </div>
+    </div>
+    <div class="card-footer ">
+        <div class="col-md-2"><input type="submit" class="btn btn-primary" /></div>
+    </div>
+</form>
