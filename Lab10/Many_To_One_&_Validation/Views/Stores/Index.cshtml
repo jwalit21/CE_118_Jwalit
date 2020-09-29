@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Many_To_One_Validation.Models.Store>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StoreName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.city)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mobile)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.city)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mobile)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StoreID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StoreID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StoreID">Delete</a> |
+                <a asp-controller="Products" asp-action="Index_Store" asp-route-id="@item.StoreID">View Products</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
