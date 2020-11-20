@@ -173,10 +173,10 @@ namespace Aarogyam.Controllers
                 {
                     await userManager.AddToRoleAsync(user,"Hospital");
                     //await userManager.AddToRoleAsync(user, "Hospital");
-                    await signInManager.SignInAsync(user, isPersistent: false);
+                    //await signInManager.SignInAsync(user, isPersistent: false);
 
-                    TempData["SuccessMessage"] = "Hospital Registered & Logged successfully!";
-                    return RedirectToAction("Dashboard", "Hospital");
+                    TempData["SuccessMessage"] = "Hospital Registered successfully!";
+                    return RedirectToAction("HospitalList", "Goverment");
                 }
                 foreach (var error in result.Errors)
                 {
@@ -357,7 +357,7 @@ namespace Aarogyam.Controllers
                     await userManager.AddToRoleAsync(user, "Citizen");
                     await signInManager.SignInAsync(user, isPersistent: false);
 
-                    TempData["ErrorMessage"] = "Citizen Registered & Logged Successfully";
+                    TempData["SuccessMessage"] = "Citizen Registered & Logged Successfully";
                     return RedirectToAction("Dashboard", "Citizen");
                 }
                 foreach (var error in result.Errors)
@@ -392,10 +392,18 @@ namespace Aarogyam.Controllers
                         {
                             return RedirectToAction("Dashboard", "Goverment");
                         }
-                        return RedirectToAction("Dashboard", "Citizen");
+                        else if(model.role == "citizen")
+                        {
+                            return RedirectToAction("Dashboard", "Citizen");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
                 }
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");
+                await signInManager.SignOutAsync();
             }
             return View(model);
         }
@@ -408,9 +416,15 @@ namespace Aarogyam.Controllers
                 ViewBag.role = role;
             else
             {
-                return View("Index", "Home");
+                return RedirectToAction("Index", "Home");
             }
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return RedirectToAction("Index","Home");
         }
 
         public async Task<IActionResult> Logout()

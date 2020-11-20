@@ -15,9 +15,7 @@
 <table class="table table-responsive-lg">
     <thead>
         <tr>
-            <th>
-                Assigned to
-            </th>
+           
             <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
@@ -37,10 +35,7 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hospital.Name)
-                @Html.DisplayFor(modelItem => item.Hospital.Email)
-            </td>
+            
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>

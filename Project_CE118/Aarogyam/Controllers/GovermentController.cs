@@ -48,6 +48,17 @@ namespace Aarogyam.Controllers
         [HttpGet]
         public IActionResult HospitalList()
         {
+            var SuccessMessage = TempData["SuccessMessage"];
+            if (SuccessMessage != null)
+            {
+                ViewBag.SuccessMessage = SuccessMessage;
+            }
+            var ErrorMessage = TempData["ErrorMessage"];
+            if (ErrorMessage != null)
+            {
+                ViewBag.ErrorMessage = ErrorMessage;
+            }
+
             var Hospitals =  context.Users.Where(c => c.IsHospital == true).ToList();
             List<RegisterHospital> rh = new List<RegisterHospital>();
             foreach (var usr_hospital in Hospitals)
@@ -65,6 +76,7 @@ namespace Aarogyam.Controllers
                     MaxBeds = (int)usr_hospital.MaxBeds,
                     Id = usr_hospital.HospitalId,
                 };
+                var u = usr.Id;
                 rh.Add(usr);
             }
             return View(rh);
@@ -72,9 +84,9 @@ namespace Aarogyam.Controllers
 
         [HttpGet]
         [Authorize(Roles ="Goverment")]
-        public IActionResult HospitalDetails(int hospital_id)
+        public IActionResult HospitalDetails(int id)
         {
-            var usr_hospital = userManager.Users.Where(c => c.HospitalId == hospital_id).FirstOrDefault();
+            var usr_hospital = userManager.Users.Where(c => c.HospitalId == id).FirstOrDefault();
             if (usr_hospital == null)
             {
                 TempData["ErrorMessage"] = "Hospital not found!";

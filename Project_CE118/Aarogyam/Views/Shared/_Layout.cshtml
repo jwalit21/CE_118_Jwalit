@@ -78,6 +78,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item ">
+                                    <a class="nav-link top-navbar_links" asp-controller="Citizen" asp-action="DeleteRequestPatientConfirm">
+                                        Cancel Bed
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
                                     <a class="nav-link top-navbar_links" asp-controller="Citizen" asp-action="Details">
                                         Profile
                                     </a>
@@ -96,7 +101,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link top-navbar_links" asp-controller="Task" asp-action="Index">
+                                    <a class="nav-link top-navbar_links" asp-controller="Task" asp-action="TaskList">
                                         Tasks
                                     </a>
                                 </li>
@@ -118,6 +123,11 @@
                             }
                             else
                             {
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Goverment" asp-action="Dashboard">
+                                        Dashboard
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link top-navbar_links" asp-controller="Goverment" asp-action="HospitalList">
                                         Hospitals

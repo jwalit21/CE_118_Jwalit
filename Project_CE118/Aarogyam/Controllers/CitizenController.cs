@@ -139,7 +139,8 @@ namespace Aarogyam.Controllers
                 MaxBeds = (int)usr_hospital.MaxBeds,
             };
 
-            var patients_of_hospitals_count = (patientRepository.GetAllPatients().Where(pat => pat.Hospital.Id == usr.hid).Count());
+            var i = patientRepository.GetAllPatients();
+            var patients_of_hospitals_count = (context.Patients.Where(pat => pat.Hospital.Id == usr.hid).Count());
             var requested_patients_of_hospital = (context.RequestPatients.Where(rp => rp.hospitalId == usr_hospital.HospitalId).Count());
             ViewBag.beds = patients_of_hospitals_count + requested_patients_of_hospital;
             return View(rh);
@@ -158,7 +159,7 @@ namespace Aarogyam.Controllers
                 var req_usr = context.RequestPatients.Where(rp => rp.citizenId == usr.CitizenId).FirstOrDefault();
                 if (req_usr == null)
                 {
-                    var patients_of_hospitals_count = (patientRepository.GetAllPatients().Where(pat => pat.Hospital.Id == usr.hid).Count());
+                    var patients_of_hospitals_count = (context.Patients.Where(pat => pat.Hospital.Id == usr.hid).Count());
                     var requested_patients_of_hospital = (context.RequestPatients.Where(rp => rp.hospitalId == usr_hospital.HospitalId).Count());
 
                     if ((patients_of_hospitals_count+requested_patients_of_hospital) >= usr_hospital.MaxBeds)

@@ -85,7 +85,7 @@ namespace Aarogyam.Controllers
             var userid = signInManager.UserManager.GetUserId(User);
             var user = context.Users.Where(usr => usr.Id == userid).FirstOrDefault();
 
-            var tasks = taskRepository.GetAllTasks()
+            var tasks = context.Tasks
                 .Where(task => task.Hospital.HospitalId == user.HospitalId)
                 .Where(t => t.Finished == true);
             return View(tasks);
@@ -110,7 +110,7 @@ namespace Aarogyam.Controllers
             var userid = signInManager.UserManager.GetUserId(User);
             var user = context.Users.Where(usr => usr.Id == userid).FirstOrDefault();
 
-            var tasks = taskRepository.GetAllTasks()
+            var tasks = context.Tasks
                 .Where(task => task.Hospital.HospitalId == user.HospitalId)
                 .Where(t=> t.Finished == false);
             return View(tasks);
@@ -138,10 +138,11 @@ namespace Aarogyam.Controllers
             if (ModelState.IsValid)
             {
                 task.Hospital = context.Users
-                    .Where(hp => hp.HospitalId == Int32.Parse(task.Hospital.Id.ToString()))
+                    .Where(hp => hp.HospitalId == Int32.Parse(task.Hospital.Id))
                     .FirstOrDefault();
                 Task newTask = taskRepository.Add(task);
-                TempData["ErrorMessage"] = "Task Created & Assigned Successfully!";
+                var t = newTask.Hospital.Id;
+                TempData["SuccessMessage"] = "Task Created & Assigned Successfully!";
             }
             return RedirectToAction("Index");
         }

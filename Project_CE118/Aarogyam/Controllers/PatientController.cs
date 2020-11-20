@@ -59,7 +59,7 @@ namespace Aarogyam.Controllers
                 .FirstOrDefault()
                 .HospitalId;
 
-            var all_patients = patientRepository.GetAllPatients().Where(pat => pat.Hospital.HospitalId == logged_user_hospital_id).ToList();
+            var all_patients = context.Patients.Where(pat => pat.Hospital.HospitalId == logged_user_hospital_id).ToList();
             List<PatientList> patientLists = new List<PatientList>();
 
             foreach (var item in all_patients)
@@ -88,7 +88,7 @@ namespace Aarogyam.Controllers
                 .Where(usr => usr.Id == logged_usr_id)
                 .FirstOrDefault();
 
-            var all_patients = patientRepository.GetAllPatients().Where(pat => pat.Hospital.HospitalId == logged_user_hospital.HospitalId).Count();
+            var all_patients = context.Patients.Where(pat => pat.Hospital.HospitalId == logged_user_hospital.HospitalId).Count();
             var all_requested_patients = context.RequestPatients.Where(rp => rp.hospitalId == logged_user_hospital.HospitalId).Count();
 
             if ((all_patients + all_requested_patients) >= logged_user_hospital.MaxBeds)
@@ -225,7 +225,7 @@ namespace Aarogyam.Controllers
                 .Where(usr => usr.Id == logged_usr_id)
                 .FirstOrDefault();
 
-            var patient_hospial_count = patientRepository.GetAllPatients().Where(pat => pat.Hospital.HospitalId == logged_user_hospital.HospitalId).Count();
+            var patient_hospial_count = context.Patients.Where(pat => pat.Hospital.HospitalId == logged_user_hospital.HospitalId).Count();
             var requested_patients_count = context.RequestPatients.Where(rp => rp.hospitalId == logged_user_hospital.HospitalId).Count();
 
             if ((patient_hospial_count + requested_patients_count) >= logged_user_hospital.MaxBeds )
