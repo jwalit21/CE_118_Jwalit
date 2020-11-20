@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Aarogyam.Models.Task>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Tasks</h4>
+<p>These are the tasks which are pending yet by the hospitals.</p>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create & Assign New Task</a> | 
+    <a class="btn btn-success" asp-action="FinishedListGoverment">All Finished Task</a>
+</p>
+
+<table class="table table-responsive-lg">
+    <thead>
+        <tr>
+            <th>
+                Assigned to
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfIssue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfDue)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hospital.Name)
+                @Html.DisplayFor(modelItem => item.Hospital.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfIssue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfDue)
+            </td>
+
+            <td>
+                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.TaskId">Edit</a> |
+                <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.TaskId">Details</a> |
+                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.TaskId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

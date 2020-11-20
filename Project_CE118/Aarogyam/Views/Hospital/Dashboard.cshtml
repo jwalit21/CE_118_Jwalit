@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    var is_full = ViewBag.is_full;
+    var beds = ViewBag.beds;
+    var pending_tasks = ViewBag.pending_task;
+    var finished_task = ViewBag.finished_task;
+    var due_tasks = ViewBag.due_task;
+    var actual_beds = ViewBag.actual_beds;
+}
+
+<h4 class="ml-3">Dashboard</h4>
+<div class="container">
+    @if (is_full)
+    {
+        <div class="row ml-1">
+            <div class="card shadow my-2 col-sm-6 bg-danger">
+                <div class="card-header" style="color:white">
+                    All Beds of the Hopsital is currently occupied.
+                </div>
+                <div class="card-body" style="color:white;">
+                    Total Beds = @actual_beds | Occupied Beds = @beds
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-sm btn-danger" asp-action="Index" asp-controller="Patient">Manage Hospitalized Patients</a>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <br />
+        <script type="text/javascript">
+            alert("You haven't provided Covid Data today, Please provide it now...!!!!);
+        </script>
+    }
+
+<div class="row">
+    <div class="col-sm-3">
+        <div class="card bg-warning">
+            <div class="card-header" style="color:white">
+                Total Remaining Due Task whose Due Date has been Dued.
+            </div>
+            <div class="card-body font-weight-bolder">
+                @due_tasks
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-sm btn-warning" asp-action="TaskList" asp-controller="Task">Tasks</a>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="col-sm-3">
+        <div class="card bg-primary">
+            <div class="card-header" style="color:white">
+                Total Pending Tasks
+            </div>
+            <div class="card-body font-weight-bolder">
+                @pending_tasks
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-sm btn-primary" asp-action="Index" asp-controller="Task">Pending Tasks</a>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="col-sm-3">
+        <div class="card bg-success">
+            <div class="card-header" style="color:white">
+                Total Government assigned finished Tasks
+            </div>
+            <div class="card-body font-weight-bolder">
+                @finished_task
+            </div>
+            <div class="card-footer">
+                <a asp-action="FinishedListHospital" asp-controller="Task" class="btn btn-sm btn-success">Finished Tasks</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card bg-secondary">
+            <div class="card-header" style="color:white">
+                Total Occupied Beds.
+            </div>
+            <div class="card-body font-weight-bolder">
+                @actual_beds
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-sm btn-secondary" asp-action="Index" asp-controller="Patient">Patients</a>
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
+</div>
+

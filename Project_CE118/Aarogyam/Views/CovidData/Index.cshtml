@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Aarogyam.Models.CovidData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Covid19 Datas List</h4>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Publish New Covid19 Data</a>
+</p>
+
+<table class="table table-responsive-lg ">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NewCases)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeathCases)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RecoveredCases)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NewCases)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeathCases)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RecoveredCases)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.CovidDataId">Edit</a> |
+                <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.CovidDataId">Details</a> |
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

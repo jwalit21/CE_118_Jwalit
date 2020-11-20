@@ -1,0 +1,31 @@
+﻿@model Aarogyam.Models.Advisory
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Are you sure you want to make unpublish this Advisory?</h3>
+<div class="col-md-6 shadow-sm my-1 p-3 mt-5" style="border-radius:10px;  background-color: rgba(228, 244, 242, 0.83)">
+    <h4>Advisory</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="AdvisoryId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

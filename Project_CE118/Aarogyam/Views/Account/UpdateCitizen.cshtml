@@ -1,0 +1,91 @@
+﻿@model Aarogyam.Models.ViewModels.RegisterCitizen
+
+@{
+    ViewData["Title"] = "UpdateCitizen";
+    IEnumerable<SelectListItem> hospitals = (IEnumerable<SelectListItem>)(ViewBag.hospitals);
+}
+
+<h4>Update Citizen</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-6 card shadow-sm o-hidden my-1 p-3" style="border-radius:10px; border-right: 4px solid #06413a; background-color: rgba(228, 244, 242, 0.83)">
+        <form asp-action="UpdateCitizen" method="post" asp-controller="Account">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Email" />
+            <div class="form-group">
+                <label asp-for="Mobile" class="control-label"></label>
+                <input asp-for="Mobile" class="form-control" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hospital_id_select" class="control-label"></label>
+                <select asp-for="Hospital_id_select" asp-items="hospitals" class="form-control">
+                </select>
+                <span asp-validation-for="Hospital_id_select" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" class="form-control" />
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Bloodgroup" class="control-label"></label>
+                <input asp-for="Bloodgroup" class="form-control" />
+                <span asp-validation-for="Bloodgroup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Height" class="control-label"></label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weight" class="control-label"></label>
+                <input asp-for="Weight" class="form-control" />
+                <span asp-validation-for="Weight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CheckupData" class="control-label"></label>
+                <input asp-for="CheckupData" class="form-control" />
+                <span asp-validation-for="CheckupData" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-controller="Citizen" asp-action="Dashboard">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

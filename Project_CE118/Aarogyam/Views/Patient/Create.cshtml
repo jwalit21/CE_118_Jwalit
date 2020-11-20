@@ -1,0 +1,37 @@
+﻿@model Aarogyam.Models.Patient
+
+@{
+    ViewData["Title"] = "Create";
+    IList<SelectListItem> citizen_users = (IList<SelectListItem>)ViewBag.citizen_list;
+}
+
+<h4>Add Patient</h4>
+<p class="font-weight-bold"><span class="text-danger font-weight-bolder">*</span>Only those Citizens can be selected as a Patients who has selected your Hospital.</p>
+
+<br />
+<a class="btn btn-warning" asp-controller="Patient" asp-action="RegisterCitizenAsPatient">Register Citizen as Patient</a>
+<hr />
+
+<div class="row">
+    <div class="col-md-6 card shadow-sm o-hidden my-1 p-3" style="border-radius:10px; border-right: 4px solid #06413a; background-color: rgba(228, 244, 242, 0.83)">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CitizenId" class="control-label"></label>
+                <select asp-for="CitizenId" asp-items="citizen_users" class="form-control"></select>
+                <span asp-validation-for="CitizenId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="Index" asp-controller="Patient">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

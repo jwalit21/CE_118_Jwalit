@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Aarogyam.Models.ViewModels.PatientList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>All Patients</h4>
+<p>List of all the patients which are currently hospitalized.</p>
+
+<br /><hr />
+
+<p>
+    <a class="btn btn-primary" asp-controller="Patient" asp-action="Create">Add New Patient</a> | 
+    <a class="btn btn-warning" asp-controller="Patient" asp-action="RegisterCitizenAsPatient">Register Citizen as Patient</a>
+</p>
+
+<table class="table table-responsive-lg">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CitizenId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckupData)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CitizenId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckupData)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-primary" asp-action="PatientCheckupDataUpdate" asp-route-id="@item.PatientId">Edit</a> |
+                <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.PatientId">Details</a> |
+                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.PatientId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

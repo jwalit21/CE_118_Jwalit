@@ -1,0 +1,45 @@
+﻿@model Aarogyam.Models.CovidData
+
+@{
+    ViewData["Title"] = "CovidDataDetails";
+}
+
+<div class="col-md-6 shadow-sm my-1 p-3 mt-5" style="border-radius:10px;  background-color: rgba(228, 244, 242, 0.83)">
+    <h4>Covid19 Data of the date @Html.DisplayFor(model => model.Date)</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.NewCases)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.NewCases)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.DeathCases)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.DeathCases)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.RecoveredCases)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.RecoveredCases)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-sm btn-dark" asp-action="CovidDataList">Back to List</a>
+</div>

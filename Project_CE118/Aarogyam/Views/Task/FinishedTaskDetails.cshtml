@@ -1,0 +1,56 @@
+﻿@model Aarogyam.Models.Task
+
+@{
+    ViewData["Title"] = "FinishedTaskDetails";
+}
+
+<div class="col-md-6 shadow-sm my-1 p-3 mt-5" style="border-radius:10px;  background-color: rgba(228, 244, 242, 0.83)">
+    <h4>Task Details</h4>
+    <hr />
+
+    <dl class="row">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.DateOfIssue)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.DateOfIssue)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.DateOfDue)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.DateOfDue)
+        </dd>
+        
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.DateOfFinished)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.DateOfFinished)
+        </dd>
+    </dl>
+</div>
+<div>
+    @if (User.IsInRole("Goverment"))
+    {
+        <a class="btn btn-sm btn-dark" asp-action="Index">Back to pending Task List</a>
+        <a class="btn btn-sm btn-dark" asp-action="FinishedListGoverment">Back to Finished Task List</a>
+    }
+    else
+    {
+        <a class="btn btn-sm btn-dark" asp-action="TaskList">Back to pending Task List</a>
+        <a class="btn btn-sm btn-dark" asp-action="FinishedListHospital">Back to Finished Task List</a>
+    }
+</div>

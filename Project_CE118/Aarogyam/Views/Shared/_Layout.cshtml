@@ -1,0 +1,226 @@
+﻿@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Aarogyam</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body style="background-color: rgba(228, 244, 242, 0.79)">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark border-bottom box-shadow mb-3" style=" background-color: #07574f;">
+            <!--#08645A-->
+            <div class="container-fluid">
+                <div class="navbar-brand">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        @if (User.IsInRole("Citizen"))
+                        {
+                            <a class="navbar-brand" asp-area="" asp-controller="Citizen" asp-action="Dashboard">Aarogyam</a>
+                        }
+                        else if (User.IsInRole("Hospital"))
+                        {
+                            <a class="navbar-brand" asp-area="" asp-controller="Hospital" asp-action="Dashboard">Aarogyam</a>
+                        }
+                        else
+                        {
+                            <a class="navbar-brand" asp-area="" asp-controller="Goverment" asp-action="Dashboard">Aarogyam</a>
+                        }
+                    }
+                    else
+                    {
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Aarogyam</a>
+                    }
+                    <a><img src="~/images/aarogyam-logo.png" style="overflow: hidden; width: 40px; height: 26px;"></a>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <ul class="navbar-nav ml-auto">
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            @if (User.IsInRole("Citizen"))
+                            {
+                                <li class="nav-item ">
+                                    <a class="nav-link top-navbar_links" asp-controller="Citizen" asp-action="Dashboard">
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Advisory" asp-action="AdvisoryList">
+                                        Advisory
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="CovidData" asp-action="CovidDataList">
+                                        Covid19 Data
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Citizen" asp-action="CitizenMadeCheckup">
+                                        Make Checkup
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Citizen" asp-action="RequestPatientConfirm">
+                                        Request Bed
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link top-navbar_links" asp-controller="Citizen" asp-action="Details">
+                                        Profile
+                                    </a>
+                                </li>
+                            }
+                            else if (User.IsInRole("Hospital"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Hospital" asp-action="Dashboard">
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Patient" asp-action="Index">
+                                        Patients
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Task" asp-action="Index">
+                                        Tasks
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Advisory" asp-action="AdvisoryList">
+                                        Advisory
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="CovidData" asp-action="CovidDataList">
+                                        Covid19 Data
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Hospital" asp-action="Details">
+                                        Profile
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Goverment" asp-action="HospitalList">
+                                        Hospitals
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Advisory" asp-action="Index">
+                                        Advisory
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="CovidData" asp-action="Index">
+                                        Covid19 Data
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link top-navbar_links" asp-controller="Task" asp-action="Index">
+                                        Tasks
+                                    </a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <form method="post" asp-controller="Account" asp-action="Logout">
+                                    <button type="submit" style="width:auto"
+                                            class="nav-link btn btn-link pt-2">
+                                        Logout @User.Identity.Name
+                                    </button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link top-navbar_links" asp-controller="Account" asp-action="RegisterCitizen">
+                                    Register Citizen
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link top-navbar_links" asp-controller="Account" asp-action="Login" asp-route-role="citizen">
+                                    Login Citizen
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link top-navbar_links" asp-controller="Account" asp-action="Login" asp-route-role="hospital">
+                                    Login Hospital
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link top-navbar_links" asp-controller="Account" asp-action="Login" asp-route-role="goverment">
+                                    Login Goverment
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+    @if (ViewBag.ErrorMessage != null)
+    {
+
+        <div style="color:white; margin-left:50%;" class="alert alert-danger alert-dismissible bg-danger w-50 ">
+            <a style="color:white;" href="#" class="close" data-dismiss="alert" aria-label="close">
+                &times;
+            </a>
+            <strong style="color:white;">Error!</strong> @ViewBag.ErrorMessage
+        </div>
+    }
+    @if (ViewBag.SuccessMessage != null)
+    {
+
+        <div style="color:white; margin-left:50%;" class="alert alert-success alert-dismissible bg-success w-50 ">
+            <a style="color:white;" href="#" class="close" data-dismiss="alert" aria-label="close">
+                &times;
+            </a>
+            <strong style="color:white;">Success!</strong> @ViewBag.SuccessMessage
+        </div>
+    }
+
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <br /><br />
+
+    <footer class="border-top footer text-muted" style="background-color: #07574f;">
+        <div class="container" style="color: white;">
+            &copy; 2020 - Aarogyam - Developer: Jwalit Shah<span> | </span><a style="color:white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <!--
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    -->
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

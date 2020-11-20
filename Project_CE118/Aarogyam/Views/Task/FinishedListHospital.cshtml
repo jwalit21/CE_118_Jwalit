@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Aarogyam.Models.Task>
+
+@{
+    ViewData["Title"] = "FinishedListHospital";
+}
+
+<h4>Finished Task List</h4>
+
+<p>
+    <a asp-action="TaskList">Back to pending Task List</a>
+</p>
+
+
+<table class="table table-responsive-lg">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfIssue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfDue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfFinished)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfIssue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfDue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfFinished)
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.TaskId">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

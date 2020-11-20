@@ -1,0 +1,31 @@
+﻿@model Aarogyam.Models.Advisory
+
+@{
+    ViewData["Title"] = "AdvisoryDetails";
+}
+
+<div class="col-md-6 shadow-sm my-1 p-3 mt-5" style="border-radius:10px;  background-color: rgba(228, 244, 242, 0.83)">
+    <h4>Advisory Details</h4>
+    <hr />
+
+    <dl class="row">
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-4">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<br />
+<hr />
+<br />
+<div>
+    <a class="btn btn-sm btn-dark" asp-action="AdvisoryList">Back to Advisory List</a>
+</div>

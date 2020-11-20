@@ -1,0 +1,48 @@
+﻿@model Aarogyam.Models.CovidData
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Insert Covid19's Data</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-6 card shadow-sm o-hidden my-1 p-3" style="border-radius:10px; border-right: 4px solid #06413a; background-color: rgba(228, 244, 242, 0.83)">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NewCases" class="control-label"></label>
+                <input asp-for="NewCases" class="form-control" />
+                <span asp-validation-for="NewCases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeathCases" class="control-label"></label>
+                <input asp-for="DeathCases" class="form-control" />
+                <span asp-validation-for="DeathCases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RecoveredCases" class="control-label"></label>
+                <input asp-for="RecoveredCases" class="form-control" />
+                <span asp-validation-for="RecoveredCases" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

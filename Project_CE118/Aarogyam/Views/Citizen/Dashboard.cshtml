@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    CovidData covid_data = ViewBag.todays_covid_data;
+    var advisory = ViewBag.advisories;
+}
+
+<h4 class="ml-3">Dashboard</h4>
+<div class="container">
+    @if (covid_data != null)
+    {
+        <div class="row ml-1">
+            <div class="card shadow my-2 col-sm-7 bg-success">
+                <div class="card-header" style="color:white">
+                    Today's Covid19 Data (Published by Government)
+                </div>
+                <div class="card-body" style="color:white;">
+                    New Cases = @covid_data.NewCases | Recovered Cases = @covid_data.RecoveredCases | Death Cases = @covid_data.DeathCases
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-sm btn-success" asp-action="CovidDataList" asp-controller="CovidData">All Covid19 Data</a>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <br />
+        <script type="text/javascript">
+            alert("You haven't provided Covid Data today, Please provide it now...!!!!);
+        </script>
+    }
+    else
+    {
+        <div class="row ml-1">
+            <div class="card shadow my-2 col-sm-7 bg-warning">
+                <div class="card-header" style="color:white">
+                    Government haven't published Today's Covid19 Data yet..!
+                </div>
+                <div class="card-body" style="color:white;">
+                    Data will be published soon.
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-sm btn-warning" asp-action="CovidDataList" asp-controller="CovidData">All Covid19 Data</a>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <br />
+    }
+
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="card bg-primary">
+                <div class="card-header" style="color:white">
+                    Government Published Covid19 Advisories
+                </div>
+                <div class="card-body font-weight-bolder">
+                    @advisory
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-sm btn-primary" asp-action="AdvisoryList" asp-controller="Advisory">Advisories</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
